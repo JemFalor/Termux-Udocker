@@ -117,7 +117,7 @@ if [ "$entrypoint_flag" = true ]; then
     # Remove the image from docker_args to get remaining arguments
     remaining_args=("${docker_args[@]:1}")
 
-    echo "Running: udocker_run ${docker_options[*]} --name $container_name --entrypoint $entrypoint_cmd $image ${remaining_args[*]}"
+    echo "Running: udocker_run ${docker_options[*]} --entrypoint $entrypoint_cmd $container_name ${remaining_args[*]}"
     udocker_run "${docker_options[@]}" --entrypoint "$entrypoint_cmd" "$container_name" "${remaining_args[@]}"
 else
     # Pattern: [docker_options] --name <container_name> <image[:tag]>
@@ -126,7 +126,7 @@ else
         usage
     fi
 
-    echo "Running: udocker_run ${docker_options[*]} --name $container_name $image"
+    echo "Running: udocker_run ${docker_options[*]} $container_name"
     udocker_run "${docker_options[@]}" "$container_name"
 fi
 
